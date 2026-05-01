@@ -22,6 +22,34 @@
 
   <link rel="stylesheet" href="css/styles.css">
 
+  <style>
+    .mob-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #ffffff;
+      text-decoration: none;
+    }
+    .mob-link:hover { color: #E8341A; }
+    .mob-cta {
+      font-size: 1rem;
+      background: #E8341A;
+      padding: 0.9rem 2.5rem;
+      margin-top: 0.5rem;
+      letter-spacing: 0.18em;
+    }
+
+    @media (max-width: 1023px) {
+      #burgerBtn { display: flex !important; }
+      .nav__links { display: none !important; }
+    }
+    @media (min-width: 1024px) {
+      #mobileOverlay { display: none !important; }
+    }
+  </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -45,6 +73,36 @@
   </script>
 </head>
 <body>
+
+  <div id="mobileOverlay" style="
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0D0D0D;
+    z-index: 99999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  ">
+    <button id="closeMenu" style="
+      position: absolute;
+      top: 24px; right: 24px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+    ">✕</button>
+    <a href="#leistungen" class="mob-link">Dienstleistungen</a>
+    <a href="#warum" class="mob-link">Warum Alidis</a>
+    <a href="#galerie" class="mob-link">Galerie</a>
+    <a href="#kontakt" class="mob-link">Kontakt</a>
+    <a href="#kontakt" class="mob-link mob-cta">Offerte anfragen</a>
+  </div>
 
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
@@ -71,8 +129,18 @@
         <a class="btn btn--primary nav__cta" href="#kontakt">Offerte anfragen</a>
       </nav>
 
-      <button class="nav__toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-links">
-        <span></span><span></span><span></span>
+      <button id="burgerBtn" aria-label="Menü" style="
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+      ">
+        <span style="display:block;width:24px;height:2px;background:#fff"></span>
+        <span style="display:block;width:24px;height:2px;background:#fff"></span>
+        <span style="display:block;width:24px;height:2px;background:#fff"></span>
       </button>
     </div>
   </header>
@@ -399,5 +467,29 @@
   </div>
 
   <script src="js/main.js"></script>
+
+  <script>
+    const overlay = document.getElementById('mobileOverlay');
+    const burgerBtn = document.getElementById('burgerBtn');
+    const closeBtn = document.getElementById('closeMenu');
+
+    function openMenu() {
+      overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    burgerBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mob-link').forEach(l => {
+      l.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  </script>
 </body>
 </html>
