@@ -1,0 +1,12 @@
+<svg viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg"
+     fill="none">
+  <path d="M18,8 L42,8 Q82,8 82,55 Q82,102 42,102 L18,102 Z"
+        fill="none" stroke="#FFFFFF" stroke-width="12"
+        stroke-linejoin="round"/>
+  <rect x="18" y="30" width="38" height="14"
+        rx="2" fill="#0D0D0D"/>
+  <rect x="18" y="48" width="44" height="14"
+        rx="2" fill="#0D0D0D"/>
+  <rect x="18" y="66" width="38" height="14"
+        rx="2" fill="#0D0D0D"/>
+</svg>
